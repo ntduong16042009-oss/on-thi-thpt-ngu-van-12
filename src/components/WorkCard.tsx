@@ -120,8 +120,8 @@ export const WorkCard: React.FC<WorkCardProps> = ({
 
         {/* Featured Quote Box */}
         {representativeQuote && (
-          <div className="p-2.5 sm:p-3 rounded-xl bg-white/[0.03] border-l-2 border-[#f39c12] text-xs text-slate-300 italic mb-3.5 sm:mb-4 font-serif-literary leading-relaxed flex gap-2">
-            <Quote className="w-3.5 h-3.5 text-[#f39c12]/70 shrink-0 mt-0.5" />
+          <div className="p-3 rounded-xl bg-amber-500/[0.06] border border-amber-500/20 text-xs text-amber-200/90 italic mb-3.5 sm:mb-4 font-serif-literary leading-relaxed flex gap-2">
+            <Quote className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
             <span className="line-clamp-2">"{representativeQuote}"</span>
           </div>
         )}

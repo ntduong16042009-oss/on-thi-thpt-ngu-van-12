@@ -173,6 +173,34 @@ export const AiAssistantView: React.FC = () => {
     setAiGeneratedResult('');
 
     try {
+      const viteApiKey = (import.meta as any).env?.VITE_GEMINI_API_KEY;
+
+      if (viteApiKey) {
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${viteApiKey}`;
+        const promptText = `Bạn là Chuyên gia Luyện thi Ngữ Văn 12 điểm 9+ THPT Quốc Gia chuẩn form Bộ GD&ĐT. Hãy lập dàn ý 9+ chi tiết cho đề bài sau:
+Tác phẩm: ${selectedWork?.title || 'Theo đề bài'} - Tác giả: ${selectedWork?.author || ''}
+Đề bài: "${aiPrompt.trim()}"
+Dạng dàn ý: ${aiOutlineType}
+${aiCustomNotes.trim() ? `Yêu cầu thêm: ${aiCustomNotes.trim()}` : ''}`;
+
+        const geminiRes = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: promptText }] }],
+          }),
+        });
+
+        if (geminiRes.ok) {
+          const gData = await geminiRes.json();
+          const generated = gData?.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (generated) {
+            setAiGeneratedResult(generated);
+            return;
+          }
+        }
+      }
+
       const response = await fetch('/api/gemini/outline', {
         method: 'POST',
         headers: {
@@ -257,6 +285,28 @@ export const AiAssistantView: React.FC = () => {
         currentMode === 'generate' && aiGeneratedResult
           ? aiGeneratedResult
           : `Tác phẩm: ${currentOutline.workTitle} - Tác giả: ${currentOutline.author}\nĐề bài: ${currentOutline.topic}\nLuận điểm chính: ${currentOutline.body.points.map((p) => p.title).join('; ')}`;
+
+      const viteApiKey = (import.meta as any).env?.VITE_GEMINI_API_KEY;
+
+      if (viteApiKey) {
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${viteApiKey}`;
+        const contents = `Ngữ cảnh dàn ý hoặc tác phẩm: ${outlineContext.slice(0, 2000)}\n\nCâu hỏi: "${chatQuestion.trim()}"\nHãy trả lời chi tiết, dẫn chứng sắc bén theo chuẩn cấu trúc ôn thi điểm 9+ Bộ GD&ĐT.`;
+        const geminiRes = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: contents }] }],
+          }),
+        });
+        if (geminiRes.ok) {
+          const gData = await geminiRes.json();
+          const ans = gData?.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (ans) {
+            setChatAnswer(ans);
+            return;
+          }
+        }
+      }
 
       const response = await fetch('/api/gemini/ask', {
         method: 'POST',

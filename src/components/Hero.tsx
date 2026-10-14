@@ -97,28 +97,22 @@ export const Hero: React.FC<HeroProps> = ({
         </p>
 
         {/* SẢN PHẨM HỌC TẬP SỐ - MÔN NGỮ VĂN SHOWCASE CARD */}
-        <div className="mb-6 sm:mb-8 mx-auto max-w-3xl rounded-2xl bg-gradient-to-br from-[#16213e]/95 via-slate-900/90 to-[#1a1c2e]/95 border-2 border-amber-500/50 p-3.5 sm:p-5 shadow-[0_10px_35px_rgba(243,156,18,0.2)] backdrop-blur-md text-left transition-all hover:border-amber-400">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-3 border-b border-white/10">
-            <div className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-[#e94560] p-0.5 shadow-md flex items-center justify-center shrink-0">
-                <div className="w-full h-full bg-[#121526] rounded-[10px] flex items-center justify-center">
-                  <GraduationCap className="w-5 h-5 text-amber-400" />
-                </div>
+        <div className="mb-6 sm:mb-8 mx-auto max-w-3xl rounded-2xl bg-[#16213e]/85 border border-amber-500/35 p-4 sm:p-5 shadow-[0_8px_30px_rgba(0,0,0,0.35)] backdrop-blur-md text-left transition-all hover:border-amber-400/60">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500/20 to-[#e94560]/20 border border-amber-500/40 p-0.5 shadow-sm flex items-center justify-center shrink-0">
+                <GraduationCap className="w-5 h-5 text-amber-300" />
               </div>
               <div>
-                <div className="flex flex-wrap items-center gap-1.5">
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-bold text-[10px] sm:text-[11px] uppercase tracking-wider border border-amber-500/40">
-                    <Sparkles className="w-3 h-3 text-amber-400" />
-                    SẢN PHẨM HỌC TẬP SỐ
-                  </span>
-                  <span className="px-2 py-0.5 rounded-full bg-[#e94560]/20 text-[#ff7991] font-bold text-[10px] sm:text-[11px] uppercase tracking-wider border border-[#e94560]/40">
-                    MÔN NGỮ VĂN
-                  </span>
+                <div className="flex items-center gap-2 text-xs font-semibold tracking-wide text-amber-300 uppercase">
+                  <span>Sản phẩm học tập số</span>
+                  <span aria-hidden="true" className="text-slate-500">·</span>
+                  <span className="text-[#ff6b81]">Môn Ngữ Văn 12</span>
                 </div>
-                <h2 className="text-sm sm:text-base font-bold text-white tracking-tight mt-1 flex items-center gap-2 flex-wrap">
+                <h2 className="text-sm sm:text-base font-bold text-white tracking-tight mt-0.5 flex items-center gap-2 flex-wrap">
                   <span>Trường THPT Yên Lãng</span>
-                  <span className="text-amber-400/90 font-medium text-xs font-mono">
-                    (Khóa: 2024–2027)
+                  <span className="text-amber-400/80 font-normal text-xs font-mono">
+                    (Khóa 2024–2027)
                   </span>
                 </h2>
               </div>

@@ -8,7 +8,7 @@
   --theme-primary-rgb: 233, 69, 96;
   --theme-secondary: #f39c12;
   --theme-secondary-rgb: 243, 156, 18;
-  --theme-text: #eeeef2;
+  --theme-text: #f8fafc;
   --theme-muted: #94a3b8;
   --theme-font-scale: 100%;
 }
@@ -24,6 +24,8 @@
     font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: var(--theme-bg) !important;
     color: var(--theme-text) !important;
+    line-height: 1.68;
+    letter-spacing: 0.005em;
     transition: background-color 0.25s ease, color 0.25s ease;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
