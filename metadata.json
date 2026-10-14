@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix Remix Remix Văn Học Lớp 12 - Nguyễn Tùng Dương",
+  "description": "Kho tàng ôn tập Ngữ văn lớp 12 chuẩn THPT Quốc Gia: tác phẩm, phân tích, dàn ý chi tiết, trích dẫn vàng và đề thi mẫu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

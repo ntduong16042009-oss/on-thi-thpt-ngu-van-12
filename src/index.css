@@ -1,0 +1,277 @@
+@import "tailwindcss";
+
+:root {
+  --theme-bg: #121526;
+  --theme-surface: #16213e;
+  --theme-card: #1a1f36;
+  --theme-primary: #e94560;
+  --theme-primary-rgb: 233, 69, 96;
+  --theme-secondary: #f39c12;
+  --theme-secondary-rgb: 243, 156, 18;
+  --theme-text: #eeeef2;
+  --theme-muted: #94a3b8;
+  --theme-font-scale: 100%;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-size: var(--theme-font-scale);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  body {
+    font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--theme-bg) !important;
+    color: var(--theme-text) !important;
+    transition: background-color 0.25s ease, color 0.25s ease;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+}
+
+/* Touch & Momentum Scrolling Utilities */
+.scrollbar-none {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none !important;
+}
+
+.touch-pan-x {
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+}
+
+.touch-pan-y {
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Global Font Family Overrides when chosen in Theme Customizer */
+html[data-theme-font="serif"] body {
+  font-family: 'Merriweather', 'Playfair Display', Georgia, serif !important;
+}
+
+html[data-theme-font="display"] body {
+  font-family: 'Playfair Display', 'Merriweather', Georgia, serif !important;
+}
+
+.font-serif-literary {
+  font-family: 'Merriweather', 'Playfair Display', Georgia, serif;
+}
+
+.font-display {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* ==========================================================================
+   DYNAMIC THEME ENGINE OVERRIDES (Maps hardcoded classes to CSS Variables)
+   ========================================================================== */
+
+/* Canvas & Card Surfaces */
+.bg-\[\#121526\] {
+  background-color: var(--theme-bg) !important;
+}
+.bg-\[\#121526\]\/90 {
+  background-color: color-mix(in srgb, var(--theme-bg) 92%, transparent) !important;
+}
+.bg-\[\#16213e\],
+.bg-\[\#16213e\]\/95 {
+  background-color: var(--theme-surface) !important;
+}
+.bg-\[\#1a1f36\],
+.bg-\[\#1a1f36\]\/90,
+.bg-\[\#14172b\] {
+  background-color: var(--theme-card) !important;
+}
+
+/* Primary Accent Color Overrides (#e94560 & #c73659) */
+.bg-\[\#e94560\],
+.hover\:bg-\[\#e94560\]:hover,
+.hover\:bg-\[\#c73659\]:hover {
+  background-color: var(--theme-primary) !important;
+}
+.bg-\[\#e94560\]\/10 {
+  background-color: rgba(var(--theme-primary-rgb), 0.12) !important;
+}
+.bg-\[\#e94560\]\/15 {
+  background-color: rgba(var(--theme-primary-rgb), 0.16) !important;
+}
+.bg-\[\#e94560\]\/20,
+.bg-\[\#e94560\]\/25 {
+  background-color: rgba(var(--theme-primary-rgb), 0.22) !important;
+}
+.text-\[\#e94560\],
+.text-\[\#ff6b81\],
+.hover\:text-\[\#e94560\]:hover {
+  color: var(--theme-primary) !important;
+}
+.border-\[\#e94560\],
+.border-\[\#e94560\]\/60,
+.border-\[\#e94560\]\/50,
+.border-\[\#e94560\]\/40,
+.border-\[\#e94560\]\/30,
+.focus\:border-\[\#e94560\]:focus,
+.hover\:border-\[\#e94560\]\/50:hover,
+.hover\:border-\[\#e94560\]\/40:hover {
+  border-color: rgba(var(--theme-primary-rgb), 0.55) !important;
+}
+
+/* Secondary Accent Color Overrides (#f39c12 & #f5a623) */
+.text-\[\#f39c12\],
+.text-\[\#f5a623\],
+.hover\:text-\[\#f39c12\]:hover {
+  color: var(--theme-secondary) !important;
+}
+.bg-\[\#f39c12\]\/20,
+.bg-\[\#f5a623\]\/10,
+.bg-\[\#f5a623\]\/15 {
+  background-color: rgba(var(--theme-secondary-rgb), 0.16) !important;
+}
+.border-\[\#f39c12\]\/50,
+.border-\[\#f39c12\]\/30,
+.border-\[\#f5a623\]\/30 {
+  border-color: rgba(var(--theme-secondary-rgb), 0.45) !important;
+}
+
+/* Gradients using Primary & Secondary Theme Colors */
+.from-\[\#e94560\].to-\[\#c73659\],
+.from-\[\#e94560\].to-\[\#f39c12\] {
+  background-image: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary)) !important;
+}
+.from-\[\#e94560\].via-\[\#f39c12\].to-\[\#e94560\] {
+  background-image: linear-gradient(
+    90deg,
+    var(--theme-primary),
+    var(--theme-secondary),
+    var(--theme-primary)
+  ) !important;
+}
+
+/* Ambient Glow Toggle Support */
+html[data-ambient-glow="false"] .blur-\[120px\],
+html[data-ambient-glow="false"] .blur-3xl {
+  display: none !important;
+}
+
+/* High Contrast Borders Toggle Support */
+html[data-high-contrast="true"] .border-white\/5,
+html[data-high-contrast="true"] .border-white\/10 {
+  border-color: rgba(var(--theme-primary-rgb), 0.38) !important;
+}
+
+/* ==========================================================================
+   LIGHT & SEPIA READING MODE ADAPTATION (html[data-theme-mode="light"])
+   Automatically adapts text, cards, and subtle borders for daytime / paper mode
+   ========================================================================== */
+html[data-theme-mode="light"] .text-\[\#eeeef2\],
+html[data-theme-mode="light"] .text-white {
+  color: var(--theme-text) !important;
+}
+
+/* Keep white text inside solid primary/colored buttons even in Light mode */
+html[data-theme-mode="light"] .bg-\[\#e94560\].text-white,
+html[data-theme-mode="light"] .bg-emerald-500.text-white,
+html[data-theme-mode="light"] .bg-emerald-600.text-white,
+html[data-theme-mode="light"] .bg-\[\#ff5500\].text-white,
+html[data-theme-mode="light"] .from-\[\#e94560\].text-white,
+html[data-theme-mode="light"] .from-\[\#ff5500\].text-white,
+html[data-theme-mode="light"] .from-\[\#f39c12\].text-white {
+  color: #ffffff !important;
+}
+
+html[data-theme-mode="light"] .text-slate-200,
+html[data-theme-mode="light"] .text-slate-300 {
+  color: color-mix(in srgb, var(--theme-text) 85%, #475569) !important;
+}
+
+html[data-theme-mode="light"] .text-slate-400,
+html[data-theme-mode="light"] .text-slate-500 {
+  color: var(--theme-muted) !important;
+}
+
+html[data-theme-mode="light"] .text-amber-200,
+html[data-theme-mode="light"] .text-amber-300,
+html[data-theme-mode="light"] .text-orange-200,
+html[data-theme-mode="light"] .text-orange-300 {
+  color: var(--theme-secondary) !important;
+}
+
+html[data-theme-mode="light"] .bg-white\/5,
+html[data-theme-mode="light"] .bg-white\/\[0\.02\],
+html[data-theme-mode="light"] .bg-white\/\[0\.03\],
+html[data-theme-mode="light"] .bg-black\/25,
+html[data-theme-mode="light"] .bg-black\/30,
+html[data-theme-mode="light"] .bg-black\/40,
+html[data-theme-mode="light"] .bg-slate-900\/80 {
+  background-color: var(--theme-card) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+html[data-theme-mode="light"] .bg-black\/60 {
+  background-color: var(--theme-surface) !important;
+}
+
+html[data-theme-mode="light"] .border-white\/5,
+html[data-theme-mode="light"] .border-white\/10,
+html[data-theme-mode="light"] .border-white\/15,
+html[data-theme-mode="light"] .border-white\/20 {
+  border-color: rgba(15, 23, 42, 0.14) !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--theme-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--theme-primary-rgb), 0.45);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--theme-primary-rgb), 0.75);
+}
+
+/* Glowing text and animations */
+@keyframes textShine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-text-shine {
+  background-size: 200% auto;
+  animation: textShine 4s ease infinite;
+}
+
+/* Print optimizations for students exporting study guides */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #111111 !important;
+  }
+  header, footer, aside, button, nav, .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .print-readable {
+    color: #111111 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
