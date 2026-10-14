@@ -187,7 +187,12 @@ export const AiAssistantView: React.FC = () => {
         }),
       });
 
-      const data = await response.json();
+      let data: any = {};
+      try {
+        data = await response.json();
+      } catch {
+        data = {};
+      }
 
       if (!response.ok) {
         throw new Error(data.error || 'Lỗi khi kết nối với máy chủ AI.');
@@ -262,7 +267,13 @@ export const AiAssistantView: React.FC = () => {
         }),
       });
 
-      const data = await response.json();
+      let data: any = {};
+      try {
+        data = await response.json();
+      } catch {
+        data = {};
+      }
+
       if (!response.ok) {
         throw new Error(data.error || 'Lỗi xử lý câu hỏi');
       }
