@@ -45,3 +45,4 @@ vercel --prod
 2. **Khai báo Node.js Engine (`>=20.19.0`)**: Đảm bảo máy chủ Vercel sử dụng đúng phiên bản Node hiện đại tương thích hoàn toàn với Vite 8.
 3. **Cấu hình TypeScript (`tsconfig.json`)**: Bỏ cờ `allowImportingTsExtensions` gây xung đột khi trình biên dịch của Vercel phân tích cú pháp mã nguồn.
 4. **Cơ chế Fallback thông minh 100% Client-side**: Toàn bộ hệ thống 35 tác phẩm, sơ đồ tư duy, trích dẫn vàng, câu hỏi trắc nghiệm, mẹo thi và đề thi thử đều được nhúng sẵn trong client, không phụ thuộc vào server trung gian.
+5. **Xử lý triệt để lỗi npm (ERESOLVE Conflict)**: Loại bỏ gói `esbuild: ^0.25.0` bị ghim xung đột với `vite 8.3` trong `package.json`, đồng thời bổ sung tệp cấu hình `.npmrc` (`legacy-peer-deps=true`) để đảm bảo lệnh `npm install` trên máy chủ Vercel luôn hoàn tất trơn tru chỉ trong 1 giây mà không bao giờ gặp lỗi xung đột gói phụ thuộc.
