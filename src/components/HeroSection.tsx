@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Search,
   Code2,
@@ -10,7 +10,6 @@ import { ExploreSection } from './ExploreSection';
 import { THEME_PRESETS } from '../data/themePresetsData';
 import { WORKS_DATA } from '../data/worksData';
 import { AUTHOR_PORTRAITS_BY_WORK } from '../data/authorPortraitsData';
-import fantasyHeroBg from '../assets/images/hero_fantasy_castle_exact_1794538637090.jpg';
 
 export interface HeroSectionProps {
   searchTerm: string;
@@ -40,26 +39,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   onOpenProjectInfo,
   topHeader,
 }) => {
-  const [parallax, setParallax] = useState({ x: 0, y: 0 });
-
   const totalWorksCount = WORKS_DATA.length;
   const uniqueAuthorsCount = new Set(
     Object.values(AUTHOR_PORTRAITS_BY_WORK).map((item) => item.authorName)
   ).size;
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const relX = (e.clientX - rect.left) / rect.width - 0.5;
-    const relY = (e.clientY - rect.top) / rect.height - 0.5;
-    setParallax({
-      x: Math.round(relX * -10),
-      y: Math.round(relY * -8),
-    });
-  };
-
-  const handleMouseLeave = () => {
-    setParallax({ x: 0, y: 0 });
-  };
 
   const popularKeywords = [
     'Xuân Tóc Đỏ cứu quốc',
@@ -84,41 +67,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
   return (
     <section
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       aria-label="Kho Tàng Văn Học 12 - Học Viện Văn Học Huyền Ảo"
       className="relative overflow-hidden pb-8 sm:pb-12 text-center"
     >
-      {/* =====================================================================
-          EXACT FULL-BLEED FANTASY LIBRARY CASTLE BACKDROP (Covers Header + Hero)
-         ===================================================================== */}
+      {/* Floating Golden Stardust Particles over the fixed full-page Fantasy Backdrop */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
-        <div
-          className="w-full h-full transition-transform duration-300 ease-out"
-          style={{
-            transform: `translate3d(${parallax.x}px, ${parallax.y}px, 0) scale(1.03)`,
-          }}
-        >
-          <img
-            src={fantasyHeroBg}
-            alt="Lâu đài thư viện văn học huyền ảo với hoa anh đào, học trò đọc sách và thác nước dưới ánh trăng"
-            referrerPolicy="no-referrer"
-            className="w-full h-full object-cover object-top opacity-85"
-          />
-        </div>
-
-        {/* Measured Scrims: keep top-left blossoms & right moon-castle vivid while ensuring crisp text contrast in center & seamless bottom transition */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080D1C]/35 via-[#080D1C]/20 to-[#080D1C]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(8,13,28,0.42)_0%,rgba(8,13,28,0.68)_85%)]" />
-
-        {/* Floating Golden Stardust Particles */}
         <span className="absolute top-[13%] left-[25%] text-[#F5D58A] text-xs animate-twinkle">✦</span>
         <span className="absolute top-[18%] right-[28%] text-[#FFF6D6] text-sm animate-twinkle" style={{ animationDelay: '1.1s' }}>✦</span>
         <span className="absolute top-[33%] left-[19%] text-[#D9A84E] text-[10px] animate-twinkle" style={{ animationDelay: '2.2s' }}>✦</span>
         <span className="absolute top-[25%] right-[19%] text-[#F5D58A] text-xs animate-twinkle" style={{ animationDelay: '0.6s' }}>✦</span>
       </div>
 
-      {/* Top Glassmorphic Header inside Hero Backdrop so blossoms & moon frame it just like reference */}
+      {/* Top Glassmorphic Header inside Hero flow (scrolls naturally away on scroll) */}
       {topHeader && <div className="relative z-20">{topHeader}</div>}
 
       {/* =====================================================================
@@ -256,13 +216,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
           {/* Popular Works Quick Chips */}
           <div className="flex flex-wrap items-center justify-center gap-1.5 text-xs text-[#C8D2E3]">
-            <span className="mr-1 text-[#F5D58A] font-semibold">Tác phẩm tiêu biểu:</span>
+            <span className="mr-1 text-[#F5D58A] font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">Tác phẩm tiêu biểu:</span>
             {popularKeywords.map((kw) => (
               <button
                 key={kw}
                 type="button"
                 onClick={() => onSelectSuggestion(kw)}
-                className="px-2.5 py-1 rounded-full bg-[#0E152B]/80 hover:bg-[#D9A84E]/25 text-[#E2E8F0] hover:text-[#FFF8E1] border border-[#D9A84E]/30 hover:border-[#F5D58A]/70 transition-all cursor-pointer active:scale-95 text-[11px]"
+                className="px-2.5 py-1 rounded-full bg-[#0E152B]/80 hover:bg-[#D9A84E]/25 text-[#E2E8F0] hover:text-[#FFF8E1] border border-[#D9A84E]/30 hover:border-[#F5D58A]/70 transition-all cursor-pointer active:scale-95 text-[11px] backdrop-blur-sm"
               >
                 {kw}
               </button>
@@ -271,7 +231,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
           {/* Regex Lesson Shortcuts & Quick Theme Bar */}
           <div className="flex flex-wrap items-center justify-center gap-2 text-xs">
-            <span className="text-[#F5D58A] font-semibold inline-flex items-center gap-1">
+            <span className="text-[#F5D58A] font-semibold inline-flex items-center gap-1 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
               <Code2 className="w-3.5 h-3.5" />
               <span>Lọc nhanh theo Bài học:</span>
             </span>
@@ -280,14 +240,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 key={item.value}
                 type="button"
                 onClick={() => onSelectSuggestion(item.value)}
-                className="px-3 py-1 rounded-full bg-[#7954A6]/20 hover:bg-[#7954A6]/35 text-[#E9D5FF] border border-[#B892FF]/40 transition-all font-mono text-[11px] cursor-pointer active:scale-95"
+                className="px-3 py-1 rounded-full bg-[#0E152B]/80 hover:bg-[#7954A6]/35 text-[#E9D5FF] border border-[#B892FF]/45 transition-all font-mono text-[11px] cursor-pointer active:scale-95 backdrop-blur-sm"
               >
                 {item.label}
               </button>
             ))}
 
             {onQuickSelectTheme && (
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0E152B]/80 border border-[#D9A84E]/30 text-[11px]">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0E152B]/80 border border-[#D9A84E]/30 text-[11px] backdrop-blur-sm">
                 <Palette className="w-3.5 h-3.5 text-[#F5D58A]" />
                 <span className="text-[#C8D2E3] hidden sm:inline">Chủ đề:</span>
                 {THEME_PRESETS.slice(0, 5).map((preset) => {

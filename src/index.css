@@ -285,6 +285,18 @@ html[data-theme-mode="light"] aside .fantasy-gold-text {
   color: transparent;
 }
 
+html[data-theme-mode="light"] .fantasy-fixed-bg-scrim {
+  background: color-mix(in srgb, var(--theme-bg) 88%, transparent) !important;
+}
+
+html[data-theme-mode="light"] .fantasy-fixed-bg-radial {
+  background: none !important;
+}
+
+html[data-theme-mode="light"] section[aria-label*="Kho Tàng"] .fantasy-fixed-bg-scrim {
+  background: color-mix(in srgb, var(--theme-bg) 60%, transparent) !important;
+}
+
 /* Keep white text inside solid primary/colored buttons even in Light mode */
 html[data-theme-mode="light"] .bg-\[\#e94560\].text-white,
 html[data-theme-mode="light"] .bg-emerald-500.text-white,

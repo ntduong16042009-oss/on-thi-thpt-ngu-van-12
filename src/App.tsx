@@ -28,6 +28,7 @@ import {
 } from './data/themePresetsData';
 import { Footer } from './components/Footer';
 import { Bookmark, BookOpen } from 'lucide-react';
+import fantasyHeroBg from './assets/images/hero_fantasy_castle_exact_1794538637090.jpg';
 
 export default function App() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -380,62 +381,90 @@ export default function App() {
 
       {/* Right Content Workspace (Offset by Sidebar Width on Desktop) */}
       <div
-        className={`flex-1 flex flex-col min-w-0 transition-all duration-300 ${
+        className={`relative flex-1 flex flex-col min-w-0 transition-all duration-300 ${
           isSidebarCollapsed ? 'md:pl-[72px]' : 'md:pl-[198px]'
         }`}
       >
-        {/* Top Header for non-Hero tabs (non-sticky, scrolls naturally with page) */}
-        {activeTab !== 'works' && headerElement}
+        {/* Fixed Full-Page Fantasy Library Background (Stays behind as user scrolls) */}
+        <div
+          aria-hidden="true"
+          className={`pointer-events-none fixed inset-0 z-0 overflow-hidden transition-all duration-300 ${
+            isSidebarCollapsed ? 'md:left-[72px]' : 'md:left-[198px]'
+          }`}
+        >
+          <img
+            src={fantasyHeroBg}
+            alt=""
+            referrerPolicy="no-referrer"
+            className="w-full h-full object-cover object-top scale-[1.01]"
+          />
+          {/* Subtle measured atmospheric overlay: lighter at top Hero, slightly deeper when scrolled/in sub-views for WCAG contrast */}
+          <div
+            className={`fantasy-fixed-bg-scrim absolute inset-0 transition-opacity duration-500 ${
+              activeTab !== 'works' || isCatalogFocused
+                ? 'bg-[#080D1C]/62'
+                : 'bg-gradient-to-b from-[#080D1C]/28 via-[#080D1C]/22 to-[#080D1C]/52'
+            }`}
+          />
+          <div className="fantasy-fixed-bg-radial absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(8,13,28,0.28)_0%,rgba(8,13,28,0.62)_92%)]" />
+        </div>
 
-        {/* Main Page Content based on tab */}
-        <main className="flex-1 pb-16 md:pb-0">
-          {activeTab === 'works' && (
-            <>
-              {/* Fantasy Library Hero (with integrated topHeader) + 3 School Info Cards + Explore Section */}
-              <HeroSection
-                topHeader={headerElement}
-                searchTerm={searchTerm}
-                onSearchChange={setSearchTerm}
-                onSelectSuggestion={(kw) => {
-                  setSearchTerm(kw);
-                  handleScrollToCatalog();
-                }}
-                onStartCatalog={handleScrollToCatalog}
-                onSelectTab={(tab) => {
-                  setActiveTab(tab);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                onOpenSpecTab={() => {
-                  setActiveTab('spec');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                onOpenScheduleTab={() => {
-                  setActiveTab('schedule');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                onOpenExamsBankTab={() => {
-                  setActiveTab('exams-bank');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                onOpenThemeModal={() => setIsThemeModalOpen(true)}
-                activeThemeId={themePrefs.presetId}
-                onQuickSelectTheme={handleQuickSelectTheme}
-                onOpenProjectInfo={() => setIsProjectInfoModalOpen(true)}
-              />
+        {/* Foreground Content Layer above Fixed Background */}
+        <div className="relative z-10 flex-1 flex flex-col min-w-0">
+          {/* Top Header for non-Hero tabs (non-sticky, scrolls naturally with page) */}
+          {activeTab !== 'works' && headerElement}
 
-              {/* Catalog Section Anchor & Ornamental Header */}
-              <div ref={worksCatalogRef} className="pt-4 sm:pt-6 scroll-mt-6">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-[#F5D58A] text-sm">✦</span>
-                    <h2 className="text-xl sm:text-2xl font-bold font-display fantasy-gold-text">
-                      Kho Tàng {WORKS_DATA.length} Tác Phẩm Văn Học Lớp 12 (Bài 1 – Bài 9)
-                    </h2>
+          {/* Main Page Content based on tab */}
+          <main className="flex-1 pb-16 md:pb-0">
+            {activeTab === 'works' && (
+              <>
+                {/* Fantasy Library Hero (with integrated topHeader) + 3 School Info Cards + Explore Section */}
+                <HeroSection
+                  topHeader={headerElement}
+                  searchTerm={searchTerm}
+                  onSearchChange={setSearchTerm}
+                  onSelectSuggestion={(kw) => {
+                    setSearchTerm(kw);
+                    handleScrollToCatalog();
+                  }}
+                  onStartCatalog={handleScrollToCatalog}
+                  onSelectTab={(tab) => {
+                    setActiveTab(tab);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  onOpenSpecTab={() => {
+                    setActiveTab('spec');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  onOpenScheduleTab={() => {
+                    setActiveTab('schedule');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  onOpenExamsBankTab={() => {
+                    setActiveTab('exams-bank');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  onOpenThemeModal={() => setIsThemeModalOpen(true)}
+                  activeThemeId={themePrefs.presetId}
+                  onQuickSelectTheme={handleQuickSelectTheme}
+                  onOpenProjectInfo={() => setIsProjectInfoModalOpen(true)}
+                />
+
+                {/* Catalog Section Anchor & Ornamental Header */}
+                <div ref={worksCatalogRef} className="pt-4 sm:pt-6 scroll-mt-6">
+                  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
+                    <div className="rounded-2xl fantasy-glass px-4 sm:px-5 py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                      <div className="flex items-center gap-2.5">
+                        <span className="text-[#F5D58A] text-sm">✦</span>
+                        <h2 className="text-lg sm:text-2xl font-bold font-display fantasy-gold-text">
+                          Kho Tàng {WORKS_DATA.length} Tác Phẩm Văn Học Lớp 12 (Bài 1 – Bài 9)
+                        </h2>
+                      </div>
+                      <span className="text-xs text-[#C8D2E3]">
+                        Nhấn vào từng tác phẩm để xem phân tích chi tiết, từng câu thơ &amp; dàn ý 9+
+                      </span>
+                    </div>
                   </div>
-                  <span className="text-xs text-[#A3B1C6]">
-                    Nhấn vào từng tác phẩm để xem phân tích chi tiết, từng câu thơ &amp; dàn ý 9+
-                  </span>
-                </div>
 
                 {/* Filter Bar */}
                 <FilterBar
@@ -551,6 +580,7 @@ export default function App() {
           }}
           onOpenProjectInfo={() => setIsProjectInfoModalOpen(true)}
         />
+        </div>
       </div>
 
       {/* Bottom-Right Floating Theme Controller & Scroll-To-Top */}

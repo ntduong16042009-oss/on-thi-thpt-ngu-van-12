@@ -17,7 +17,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavTab, onOpenProjectInfo }) =
   };
 
   return (
-    <footer className="mt-20 bg-[#050812]/90 border-t border-[#D9A84E]/40 backdrop-blur-md relative overflow-hidden">
+    <footer className="mt-20 bg-[#050812]/78 border-t border-[#D9A84E]/40 backdrop-blur-md relative overflow-hidden">
       {/* Decorative top ambient bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">

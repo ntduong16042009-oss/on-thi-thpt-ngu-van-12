@@ -86,7 +86,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         </div>
 
         {/* Results counter text & quick reset button */}
-        <div className="text-xs text-slate-400 whitespace-nowrap flex items-center justify-between sm:justify-end gap-2.5 px-1">
+        <div className="text-xs text-[#D5DFEE] drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)] whitespace-nowrap flex items-center justify-between sm:justify-end gap-2.5 px-1">
           <span>
             Kết quả: <strong className="text-[#F5D58A] font-semibold">{resultCount}</strong>/{works.length} tác phẩm
           </span>
@@ -110,7 +110,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
       {/* Curriculum Lesson Filter Row (Bài 1 -> Bài 9) */}
       {onLessonFilterChange && (
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1.5 scrollbar-none scroll-smooth touch-pan-x sm:flex-wrap text-xs border-b border-[#D9A84E]/15">
-          <span className="inline-flex items-center gap-1 text-slate-400 mr-1 font-medium whitespace-nowrap shrink-0">
+          <span className="inline-flex items-center gap-1 text-[#D5DFEE] drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)] mr-1 font-medium whitespace-nowrap shrink-0">
             <Calendar className="w-3.5 h-3.5 text-[#F5D58A]" />
             <span className="hidden sm:inline">Theo Bài học (SGK 12):</span>
             <span className="sm:hidden">Bài học:</span>
@@ -156,7 +156,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
       {/* Secondary row: Expression Mode Specification Filter */}
       {onExpressionFilterChange && (
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none scroll-smooth touch-pan-x sm:flex-wrap text-xs">
-          <span className="inline-flex items-center gap-1 text-slate-400 mr-1 font-medium whitespace-nowrap shrink-0">
+          <span className="inline-flex items-center gap-1 text-[#D5DFEE] drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)] mr-1 font-medium whitespace-nowrap shrink-0">
             <Compass className="w-3.5 h-3.5 text-[#f39c12]" />
             <span className="hidden sm:inline">Phương thức biểu đạt:</span>
             <span className="sm:hidden">PT:</span>
