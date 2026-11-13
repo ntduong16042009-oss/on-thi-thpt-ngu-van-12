@@ -1,16 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --theme-bg: #121526;
-  --theme-surface: #16213e;
-  --theme-card: #1a1f36;
-  --theme-primary: #e94560;
-  --theme-primary-rgb: 233, 69, 96;
-  --theme-secondary: #f39c12;
-  --theme-secondary-rgb: 243, 156, 18;
+  --theme-bg: #080D1C;
+  --theme-surface: #0E152B;
+  --theme-card: #131C36;
+  --theme-primary: #D9A84E;
+  --theme-primary-rgb: 217, 168, 78;
+  --theme-secondary: #F5D58A;
+  --theme-secondary-rgb: 245, 213, 138;
   --theme-text: #f8fafc;
-  --theme-muted: #94a3b8;
+  --theme-muted: #A3B1C6;
   --theme-font-scale: 100%;
+  --fantasy-purple: #7954A6;
+  --fantasy-emerald: #27B98B;
 }
 
 @layer base {
@@ -69,7 +71,69 @@ html[data-theme-font="display"] body {
 }
 
 .font-display {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-fantasy {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+}
+
+/* Literature Fantasy Academy Glassmorphism & Gold Utilities */
+.fantasy-glass {
+  background: linear-gradient(135deg, rgba(14, 21, 43, 0.78) 0%, rgba(9, 10, 16, 0.86) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(217, 168, 78, 0.32);
+  box-shadow: 0 12px 36px -6px rgba(0, 0, 0, 0.65), inset 0 1px 0 0 rgba(245, 213, 138, 0.16);
+}
+
+.fantasy-glass-hover {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.fantasy-glass-hover:hover {
+  transform: translateY(-3px);
+  border-color: rgba(245, 213, 138, 0.65);
+  box-shadow: 0 18px 42px -8px rgba(0, 0, 0, 0.75), 0 0 22px rgba(217, 168, 78, 0.22), inset 0 1px 0 0 rgba(245, 213, 138, 0.28);
+}
+
+.fantasy-gold-text {
+  background: linear-gradient(180deg, #FFF6D6 0%, #F5D58A 45%, #D9A84E 85%, #B68029 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 4px 16px rgba(217, 168, 78, 0.32));
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes floatReverse {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(8px) rotate(-2deg); }
+}
+
+@keyframes twinkleStar {
+  0%, 100% { opacity: 0.25; transform: scale(0.85); }
+  50% { opacity: 0.95; transform: scale(1.15); }
+}
+
+@keyframes soundWave {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 7.5s ease-in-out infinite;
+}
+
+.animate-twinkle {
+  animation: twinkleStar 3.5s ease-in-out infinite;
 }
 
 /* ==========================================================================
@@ -77,20 +141,38 @@ html[data-theme-font="display"] body {
    ========================================================================== */
 
 /* Canvas & Card Surfaces */
+.bg-\[\#080D1C\],
 .bg-\[\#121526\] {
   background-color: var(--theme-bg) !important;
 }
 .bg-\[\#121526\]\/90 {
   background-color: color-mix(in srgb, var(--theme-bg) 92%, transparent) !important;
 }
+.bg-\[\#0E152B\],
 .bg-\[\#16213e\],
 .bg-\[\#16213e\]\/95 {
   background-color: var(--theme-surface) !important;
 }
+.bg-\[\#131C36\],
 .bg-\[\#1a1f36\],
 .bg-\[\#1a1f36\]\/90,
 .bg-\[\#14172b\] {
   background-color: var(--theme-card) !important;
+}
+
+/* Dynamic Theme Support on Fantasy Glass (non-hero overlays & cards) */
+html[data-theme-mode="light"] .fantasy-glass {
+  background: color-mix(in srgb, var(--theme-card) 92%, rgba(255, 255, 255, 0.9)) !important;
+  border-color: rgba(var(--theme-primary-rgb), 0.35) !important;
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08) !important;
+}
+
+html[data-theme-mode="light"] .fantasy-gold-text {
+  background: linear-gradient(180deg, var(--theme-primary) 0%, var(--theme-secondary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: none;
 }
 
 /* Primary Accent Color Overrides (#e94560 & #c73659) */
@@ -175,6 +257,32 @@ html[data-high-contrast="true"] .border-white\/10 {
 html[data-theme-mode="light"] .text-\[\#eeeef2\],
 html[data-theme-mode="light"] .text-white {
   color: var(--theme-text) !important;
+}
+
+/* Preserve readable light text inside Hero & Explore image overlays even in Light mode */
+html[data-theme-mode="light"] section[aria-label*="Kho Tàng"] .text-white,
+html[data-theme-mode="light"] section[aria-label*="Kho Tàng"] .text-\[\#FFF8E1\],
+html[data-theme-mode="light"] section[aria-label*="Kho Tàng"] .text-\[\#FFF6D6\],
+html[data-theme-mode="light"] section[aria-label*="Kho Tàng"] .text-\[\#F8FAFC\],
+html[data-theme-mode="light"] section[aria-label*="Kho Tàng"] .text-\[\#EDF2F9\],
+html[data-theme-mode="light"] section[aria-label*="Kho Tàng"] .text-\[\#D5DFEE\],
+html[data-theme-mode="light"] section[aria-label*="Kho Tàng"] .text-\[\#C8D2E3\],
+html[data-theme-mode="light"] aside .text-white,
+html[data-theme-mode="light"] aside .text-\[\#FFF8E1\] {
+  color: #f8fafc !important;
+}
+
+html[data-theme-mode="light"] section[aria-label*="Kho Tàng"] .fantasy-glass {
+  background: linear-gradient(135deg, rgba(14, 21, 43, 0.82) 0%, rgba(9, 10, 16, 0.88) 100%) !important;
+  border-color: rgba(217, 168, 78, 0.42) !important;
+}
+
+html[data-theme-mode="light"] section[aria-label*="Kho Tàng"] .fantasy-gold-text,
+html[data-theme-mode="light"] aside .fantasy-gold-text {
+  background: linear-gradient(180deg, #FFF6D6 0%, #F5D58A 45%, #D9A84E 85%, #B68029 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Keep white text inside solid primary/colored buttons even in Light mode */

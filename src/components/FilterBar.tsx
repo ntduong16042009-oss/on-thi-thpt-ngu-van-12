@@ -55,7 +55,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 mb-5 sm:mb-6 space-y-2.5 sm:space-y-3">
       {/* Primary Genre Filter Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-4 pb-2.5 border-b border-white/10">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-4 pb-2.5 border-b border-[#D9A84E]/20">
         {/* Genre scrollable bar on mobile / wrap on desktop */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none scroll-smooth touch-pan-x sm:flex-wrap">
           {filterOptions.map((opt) => {
@@ -66,16 +66,16 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                 key={opt.id}
                 type="button"
                 onClick={() => onFilterChange(opt.id)}
-                className={`px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer shrink-0 active:scale-95 ${
+                className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer shrink-0 active:scale-95 ${
                   isActive
-                    ? 'bg-[#e94560] text-white shadow-[0_4px_15px_rgba(233,69,96,0.4)] transform -translate-y-0.5'
-                    : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/5 hover:border-[#e94560]/30'
+                    ? 'bg-gradient-to-r from-[#8F6519] via-[#B88428] to-[#8F6519] text-[#FFF8E1] border border-[#F5D58A]/70 shadow-[0_4px_15px_rgba(217,168,78,0.35)] transform -translate-y-0.5 font-bold'
+                    : 'bg-[#0E152B]/80 text-slate-300 hover:bg-[#162040] hover:text-white border border-[#D9A84E]/25 hover:border-[#F5D58A]/60'
                 }`}
               >
                 <span>{opt.label}</span>
                 <span
                   className={`text-[10px] px-1.5 py-0.2 rounded-full font-semibold ${
-                    isActive ? 'bg-black/20 text-white' : 'text-slate-400'
+                    isActive ? 'bg-black/30 text-[#FFF8E1]' : 'text-[#F5D58A]/80'
                   }`}
                 >
                   {count}
@@ -88,7 +88,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         {/* Results counter text & quick reset button */}
         <div className="text-xs text-slate-400 whitespace-nowrap flex items-center justify-between sm:justify-end gap-2.5 px-1">
           <span>
-            Kết quả: <strong className="text-[#f39c12] font-semibold">{resultCount}</strong>/{works.length} tác phẩm
+            Kết quả: <strong className="text-[#F5D58A] font-semibold">{resultCount}</strong>/{works.length} tác phẩm
           </span>
           {(currentFilter !== 'all' || currentLessonFilter !== 'all' || currentExpressionFilter !== 'all') && (
             <button
@@ -98,8 +98,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                 if (onLessonFilterChange) onLessonFilterChange('all');
                 if (onExpressionFilterChange) onExpressionFilterChange('all');
               }}
-              className="text-[11px] px-2 py-0.5 rounded-md bg-white/10 hover:bg-[#e94560]/20 text-rose-300 border border-white/15 hover:border-[#e94560]/40 transition-colors cursor-pointer active:scale-95"
-              title="Khôi phục xem toàn bộ 35 tác phẩm"
+              className="text-[11px] px-2.5 py-0.5 rounded-md bg-white/10 hover:bg-[#D9A84E]/25 text-[#F5D58A] border border-[#D9A84E]/40 transition-colors cursor-pointer active:scale-95"
+              title={`Khôi phục xem toàn bộ ${works.length} tác phẩm`}
             >
               ✕ Bỏ lọc
             </button>
@@ -109,9 +109,9 @@ export const FilterBar: React.FC<FilterBarProps> = ({
 
       {/* Curriculum Lesson Filter Row (Bài 1 -> Bài 9) */}
       {onLessonFilterChange && (
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1.5 scrollbar-none scroll-smooth touch-pan-x sm:flex-wrap text-xs border-b border-white/5">
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1.5 scrollbar-none scroll-smooth touch-pan-x sm:flex-wrap text-xs border-b border-[#D9A84E]/15">
           <span className="inline-flex items-center gap-1 text-slate-400 mr-1 font-medium whitespace-nowrap shrink-0">
-            <Calendar className="w-3.5 h-3.5 text-[#e94560]" />
+            <Calendar className="w-3.5 h-3.5 text-[#F5D58A]" />
             <span className="hidden sm:inline">Theo Bài học (SGK 12):</span>
             <span className="sm:hidden">Bài học:</span>
           </span>
@@ -120,11 +120,11 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             onClick={() => onLessonFilterChange('all')}
             className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all whitespace-nowrap cursor-pointer shrink-0 active:scale-95 ${
               currentLessonFilter === 'all'
-                ? 'bg-[#e94560] text-white font-bold shadow-sm'
-                : 'bg-white/[0.03] text-slate-300 hover:text-white border border-white/10'
+                ? 'bg-gradient-to-r from-[#8F6519] to-[#B88428] border border-[#F5D58A]/60 text-[#FFF8E1] font-bold shadow-sm'
+                : 'bg-[#0E152B]/70 text-slate-300 hover:text-white border border-[#D9A84E]/20'
             }`}
           >
-            Tất cả (35)
+            Tất cả ({works.length})
           </button>
           {CURRICULUM_LESSONS_DATA.map((unit) => {
             const active = currentLessonFilter === unit.id;
@@ -138,13 +138,13 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                 onClick={() => onLessonFilterChange(active ? 'all' : unit.id)}
                 className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer shrink-0 active:scale-95 ${
                   active
-                    ? 'bg-[#e94560] text-white font-bold shadow-sm'
-                    : 'bg-white/[0.03] text-slate-300 hover:text-white border border-white/10 hover:border-[#e94560]/40'
+                    ? 'bg-gradient-to-r from-[#8F6519] to-[#B88428] border border-[#F5D58A]/60 text-[#FFF8E1] font-bold shadow-sm'
+                    : 'bg-[#0E152B]/70 text-slate-300 hover:text-white border border-[#D9A84E]/20 hover:border-[#F5D58A]/50'
                 }`}
                 title={unit.title}
               >
                 <span>Bài {unit.lessonNumber}</span>
-                <span className={`text-[10px] ${active ? 'text-white/90' : 'text-slate-500'}`}>
+                <span className={`text-[10px] ${active ? 'text-[#FFF8E1]/90' : 'text-slate-400'}`}>
                   ({unitWorkIds.length})
                 </span>
               </button>

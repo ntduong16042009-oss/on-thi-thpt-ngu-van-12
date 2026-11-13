@@ -17,9 +17,6 @@ import {
   User,
   Check,
   Copy,
-  ExternalLink,
-  Download,
-  School,
 } from 'lucide-react';
 
 interface MobileBottomNavProps {
@@ -357,19 +354,6 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
                 <span className="text-[11px] text-orange-400 font-bold">Mở nghe</span>
               </button>
 
-              {/* Download Source Code Zip */}
-              <a
-                href="/on-thi-ngu-van-12.zip"
-                download="on-thi-ngu-van-12.zip"
-                onClick={() => setIsMenuOpen(false)}
-                className="w-full flex items-center justify-between p-3 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-xs text-emerald-200 hover:text-white transition-colors"
-              >
-                <div className="flex items-center gap-2.5">
-                  <Download className="w-4 h-4 text-emerald-400" />
-                  <span className="font-medium">Tải Trọn Bộ Mã Nguồn (.zip)</span>
-                </div>
-                <span className="text-[11px] text-emerald-400 font-bold">Tải về</span>
-              </a>
             </div>
 
             {/* Developer Contact Card */}

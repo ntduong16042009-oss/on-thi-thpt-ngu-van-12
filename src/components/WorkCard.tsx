@@ -29,10 +29,12 @@ export const WorkCard: React.FC<WorkCardProps> = ({
       data-work-id={work.id}
       data-genre={work.genre}
       data-expression-mode={expressionSpec?.primaryExpression || 'Biểu cảm'}
-      className="group relative bg-[#16213e]/60 hover:bg-[#16213e]/90 border border-white/10 hover:border-[#e94560]/60 rounded-2xl p-4 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(233,69,96,0.25)] active:scale-[0.99] flex flex-col justify-between cursor-pointer backdrop-blur-sm overflow-hidden"
+      className="group relative fantasy-glass fantasy-glass-hover rounded-2xl p-4 sm:p-6 flex flex-col justify-between cursor-pointer overflow-hidden"
     >
-      {/* Decorative top shimmer line */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#e94560]/0 group-hover:via-[#e94560] to-transparent transition-all duration-500" />
+      {/* Decorative top gold shimmer line */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#F5D58A]/0 group-hover:via-[#F5D58A] to-transparent transition-all duration-500" />
+      <span className="pointer-events-none absolute top-1.5 left-2 text-[9px] text-[#F5D58A]/35">╔</span>
+      <span className="pointer-events-none absolute top-1.5 right-2 text-[9px] text-[#F5D58A]/35">╗</span>
 
       <div>
         {/* Unboxed clean metadata header */}
@@ -186,10 +188,10 @@ export const WorkCard: React.FC<WorkCardProps> = ({
         <button
           type="button"
           onClick={() => onSelectWork(work)}
-          className="w-full sm:w-auto flex items-center justify-center gap-1.5 text-xs font-semibold text-white bg-gradient-to-r from-[#e94560] to-[#c0392b] hover:from-[#ff6b81] hover:to-[#e94560] px-3.5 py-1.5 rounded-lg border border-white/10 shadow-sm transition-all active:scale-95 cursor-pointer min-h-[34px]"
+          className="w-full sm:w-auto flex items-center justify-center gap-1.5 text-xs font-bold text-[#FFF8E1] bg-gradient-to-r from-[#8F6519] via-[#B88428] to-[#8F6519] hover:from-[#D9A84E] hover:to-[#A6741E] px-3.5 py-1.5 rounded-lg border border-[#F5D58A]/50 shadow-[0_4px_14px_rgba(217,168,78,0.25)] transition-all active:scale-95 cursor-pointer min-h-[34px]"
           title="Khám phá chi tiết tác phẩm (Giao diện tối ưu bao quát)"
         >
-          <BookOpen className="w-3.5 h-3.5" />
+          <BookOpen className="w-3.5 h-3.5 text-[#FFF8E1]" />
           <span>Khám phá</span>
           <ArrowRight className="w-3 h-3 transform group-hover:translate-x-0.5 transition-transform" />
         </button>

@@ -28,9 +28,23 @@ export interface UserThemePreferences {
 
 export const THEME_PRESETS: ThemePreset[] = [
   {
+    id: 'fantasy-academy',
+    name: 'Học Viện Văn Học Huyền Ảo',
+    subtitle: 'Midnight Navy & Vàng Kim Cổ Điển (Dark Academia)',
+    mode: 'dark',
+    bgColor: '#080D1C',
+    surfaceColor: '#0E152B',
+    cardColor: '#131C36',
+    primaryColor: '#D9A84E',
+    secondaryColor: '#F5D58A',
+    textColor: '#F8FAFC',
+    mutedTextColor: '#A3B1C6',
+    badge: 'Mặc định',
+  },
+  {
     id: 'crimson-night',
     name: 'Hồng Ngọc Đêm Sao',
-    subtitle: 'Giao diện gốc ấm áp & nổi bật',
+    subtitle: 'Giao diện ấm áp & nổi bật',
     mode: 'dark',
     bgColor: '#121526',
     surfaceColor: '#16213e',
@@ -39,7 +53,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     secondaryColor: '#f39c12',
     textColor: '#eeeef2',
     mutedTextColor: '#94a3b8',
-    badge: 'Mặc định',
+    badge: 'Hồng ngọc',
   },
   {
     id: 'emerald-forest',
@@ -156,12 +170,12 @@ export const THEME_PRESETS: ThemePreset[] = [
 ];
 
 export const DEFAULT_THEME_PREFS: UserThemePreferences = {
-  presetId: 'crimson-night',
-  bgColor: '#121526',
-  surfaceColor: '#16213e',
-  cardColor: '#1a1f36',
-  primaryColor: '#e94560',
-  secondaryColor: '#f39c12',
+  presetId: 'fantasy-academy',
+  bgColor: '#080D1C',
+  surfaceColor: '#0E152B',
+  cardColor: '#131C36',
+  primaryColor: '#D9A84E',
+  secondaryColor: '#F5D58A',
   fontScale: 'md',
   fontFamily: 'sans',
   ambientGlow: true,
